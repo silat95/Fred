@@ -1,0 +1,486 @@
+<title>Atelier skinmi</title>
+<meta name="description" content="skinmi, l’atelier K-Beauty : diagnostic de peau, soin du visage, routine personnalisée et brunch partagé. 10 places, 79 €.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #FBF3EC;
+    --blush: #F7E4E7;
+    --rose: #F0D3D8;
+    --wine: #7A2839;
+    --wine-deep: #5A1E29;
+    --ink: #2B1D20;
+    --muted: #8A7478;
+    --line: rgba(90, 30, 41, 0.14);
+    --word-off: #D8C4C8;
+    --display: 'Instrument Sans', 'Helvetica Neue', Arial, sans-serif;
+    --brand: 'Fredoka', 'Nunito', 'Arial Rounded MT Bold', sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+    --gutter: clamp(16px, 4vw, 56px);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--display);
+    font-size: 17px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; }
+  a { color: inherit; }
+  h1, h2, h3 { font-weight: 500; letter-spacing: -0.03em; line-height: 1.02; margin: 0; text-wrap: balance; }
+  p { margin: 0; }
+  .mono { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .wrap { padding-inline: var(--gutter); }
+  :focus-visible { outline: 2px solid var(--wine); outline-offset: 3px; border-radius: 4px; }
+
+  /* ─── Barre de navigation ─── */
+  .nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px;
+    padding-block: 18px;
+    background: color-mix(in srgb, var(--ivory) 86%, transparent);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    transition: box-shadow .4s var(--ease);
+  }
+  .nav.scrolled { box-shadow: 0 1px 0 var(--line); }
+  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .wordmark { font-family: var(--brand); font-weight: 600; font-size: 26px; color: var(--wine); letter-spacing: -0.01em; line-height: 1; position: relative; padding-right: 26px; }
+  .wordmark small { position: absolute; right: 0; bottom: -4px; font-family: var(--display); font-size: 10px; font-weight: 500; letter-spacing: 0; }
+  .seats { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px 4px 5px; font-size: 12px; color: var(--muted); white-space: nowrap; }
+  .seats i { display: flex; }
+  .seats i b { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--ivory); margin-left: -6px; }
+  .seats i b:first-child { margin-left: 0; background: #E9BFC6; }
+  .seats i b:nth-child(2) { background: #C98492; }
+  .seats i b:nth-child(3) { background: var(--wine); }
+  .links { display: flex; gap: 28px; font-size: 14px; }
+  .links a { text-decoration: none; color: var(--ink); opacity: .78; transition: opacity .2s; }
+  .links a:hover { opacity: 1; }
+  .actions { display: flex; justify-content: flex-end; gap: 10px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 0 20px; border-radius: 999px; font: 500 14px/1 var(--display); text-decoration: none; cursor: pointer; border: 1px solid transparent; transition: transform .3s var(--ease), background .3s, color .3s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-ghost { border-color: var(--line); background: transparent; color: var(--ink); }
+  .btn-wine { background: var(--wine); color: #fff; }
+  .btn-wine:hover { background: var(--wine-deep); }
+  .btn-rose { background: var(--rose); color: var(--wine-deep); }
+
+  /* ─── Hero ─── */
+  .hero {
+    display: grid; grid-template-columns: 1fr minmax(300px, 460px) 1fr; align-items: end; gap: clamp(16px, 3vw, 48px);
+    padding-block: clamp(24px, 5vh, 56px) 0;
+    min-height: min(820px, calc(100vh - 80px));
+  }
+  .hero-copy { align-self: center; padding-bottom: 6vh; }
+  .hero-copy h1 { font-size: clamp(46px, 6.4vw, 96px); color: var(--ink); }
+  .hero-copy h1 em { font-style: normal; color: var(--wine); }
+  .hero-copy p { margin-top: 22px; max-width: 30ch; color: var(--muted); font-size: 16px; }
+  .hero-copy .btn { margin-top: 28px; }
+  .hero-kicker { color: var(--wine); margin-bottom: 20px; display: flex; gap: 10px; align-items: center; }
+  .hero-kicker::before { content: ''; width: 18px; height: 1px; background: currentColor; }
+
+  .portrait { position: relative; aspect-ratio: 3 / 4; width: 100%; }
+  .portrait img {
+    width: 100%; height: 100%; object-fit: cover;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent 98%);
+            mask-image: linear-gradient(to bottom, #000 62%, transparent 98%);
+    animation: rise 1.4s var(--ease) both;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(24px) scale(1.02); } to { opacity: 1; transform: none; } }
+
+  .scanline {
+    position: absolute; left: 12%; right: 12%; top: 10%; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.95), transparent);
+    box-shadow: 0 0 18px 4px rgba(255, 235, 240, .7);
+    opacity: 0; animation: sweep 3.6s 1.2s var(--ease) infinite;
+  }
+  @keyframes sweep { 0% { top: 12%; opacity: 0; } 12% { opacity: 1; } 70% { opacity: .9; } 85%, 100% { top: 70%; opacity: 0; } }
+
+  .scan { position: absolute; left: var(--x); top: var(--y); width: var(--s); aspect-ratio: 1; opacity: 0; transform: scale(1.25); animation: lock .7s var(--ease) forwards; animation-delay: var(--d); }
+  .scan::before, .scan::after { content: ''; position: absolute; inset: 0; border: 1.5px solid rgba(255,255,255,.95); }
+  .scan::before { clip-path: polygon(0 0, 28% 0, 28% 2px, 2px 2px, 2px 28%, 0 28%, 0 72%, 2px 72%, 2px calc(100% - 2px), 28% calc(100% - 2px), 28% 100%, 0 100%); border-right: 0; }
+  .scan::after { clip-path: polygon(72% 0, 100% 0, 100% 100%, 72% 100%, 72% calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 72%, 100% 72%, 100% 28%, calc(100% - 2px) 28%, calc(100% - 2px) 2px, 72% 2px); border-left: 0; }
+  .scan span {
+    position: absolute; left: calc(100% + 8px); top: 0; white-space: nowrap;
+    background: rgba(255,255,255,.88); color: var(--wine-deep); padding: 4px 8px; border-radius: 6px;
+    font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase;
+    box-shadow: 0 6px 18px rgba(90,30,41,.12);
+  }
+  .scan.left span { left: auto; right: calc(100% + 8px); }
+  .scan span b { font-weight: 500; color: var(--wine); margin-left: 4px; }
+  @keyframes lock { 60% { opacity: 1; transform: scale(.96); } 100% { opacity: 1; transform: scale(1); } }
+
+  .stats { align-self: center; justify-self: end; display: grid; gap: 30px; padding-bottom: 6vh; text-align: right; }
+  .stat strong { display: block; font-size: clamp(30px, 3vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat strong sub { font-size: .45em; vertical-align: baseline; margin-left: 3px; letter-spacing: 0; }
+  .stat span { display: block; margin-top: 6px; color: var(--muted); font-size: 12px; max-width: 16ch; margin-left: auto; }
+
+  /* ─── Récit épinglé (image à gauche, texte à droite) ─── */
+  .story { position: relative; height: calc(var(--steps) * 100vh); margin-top: clamp(40px, 8vh, 100px); }
+  .story-pin { position: sticky; top: 0; height: 100vh; display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(12px, 1.6vw, 24px); padding-block: 88px 24px; }
+  .frame { position: relative; border-radius: 22px; overflow: hidden; background: var(--rose); }
+  .shot { position: absolute; inset: 0; clip-path: inset(100% 0 0 0); transition: clip-path 1.1s var(--ease); }
+  .shot img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 1.6s var(--ease); }
+  .shot.on { clip-path: inset(0 0 0 0); }
+  .shot.on img { transform: scale(1); }
+  .dot { position: absolute; left: var(--x); top: var(--y); display: flex; align-items: center; gap: 8px; color: #fff; opacity: 0; transform: translateY(8px); transition: opacity .6s var(--ease), transform .6s var(--ease); transition-delay: var(--d, .5s); }
+  .dot::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 5px rgba(255,255,255,.28); }
+  .dot span { font-family: var(--mono); font-size: 10px; letter-spacing: .1em; text-shadow: 0 1px 8px rgba(43,29,32,.45); }
+  .shot.on .dot { opacity: 1; transform: none; }
+  .frame-tag { position: absolute; left: 18px; bottom: 18px; z-index: 5; background: rgba(251,243,236,.92); color: var(--wine-deep); border-radius: 999px; padding: 8px 14px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; }
+
+  .panel { position: relative; border-radius: 22px; background: var(--blush); overflow: hidden; }
+  .panel-top { position: absolute; left: 32px; right: 32px; top: 28px; display: flex; justify-content: space-between; color: var(--muted); }
+  .panel-count { font-variant-numeric: tabular-nums; }
+  .step { position: absolute; left: clamp(24px, 4vw, 64px); right: clamp(24px, 4vw, 64px); top: 50%; transform: translateY(calc(-50% + 30px)); opacity: 0; transition: opacity .7s var(--ease), transform .9s var(--ease); pointer-events: none; }
+  .step.on { opacity: 1; transform: translateY(-50%); pointer-events: auto; }
+  .step.past { transform: translateY(calc(-50% - 30px)); }
+  .step .mono { color: var(--wine); }
+  .step h2 { margin-top: 14px; font-size: clamp(34px, 4.2vw, 64px); }
+  .step p { margin-top: 18px; max-width: 34ch; color: #5E4A4E; font-size: 17px; }
+  .progress { position: absolute; left: 32px; right: 32px; bottom: 28px; display: grid; grid-template-columns: repeat(var(--steps), 1fr); gap: 6px; }
+  .progress i { height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
+  .progress i b { display: block; height: 100%; background: var(--wine); transform: scaleX(0); transform-origin: left; }
+
+  /* ─── Texte qui se révèle ─── */
+  .reveal { position: relative; height: 240vh; }
+  .reveal-pin { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: hidden; }
+  .reveal-text { position: relative; z-index: 2; max-width: 20ch; text-align: center; font-size: clamp(32px, 4.6vw, 70px); font-weight: 500; letter-spacing: -0.035em; line-height: 1.08; margin: 0; }
+  .w { color: var(--word-off); transition: color .35s linear; }
+  .w.lit { color: var(--ink); }
+  .w.key.lit { color: var(--wine); }
+  .chip { position: absolute; left: var(--x); top: var(--y); z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 10px; border-radius: 999px; background: #fff; box-shadow: 0 10px 30px rgba(90,30,41,.08); font-size: 13px; font-weight: 500; white-space: nowrap; will-change: transform; }
+  .chip::before { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--c, var(--wine)); }
+
+  /* ─── Déroulé ─── */
+  .schedule { padding-block: clamp(80px, 14vh, 160px) clamp(60px, 10vh, 120px); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(32px, 6vw, 96px); }
+  .schedule h2 { font-size: clamp(36px, 4.4vw, 64px); }
+  .schedule-intro p { margin-top: 18px; color: var(--muted); max-width: 32ch; }
+  .timeline { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+  .timeline li { display: grid; grid-template-columns: 9.5em minmax(0, 1fr); gap: 16px; padding-block: 20px; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .timeline time { font-family: var(--mono); font-size: 13px; color: var(--wine); font-variant-numeric: tabular-nums; }
+  .timeline strong { font-weight: 500; font-size: 19px; }
+  .timeline span { display: block; color: var(--muted); font-size: 15px; margin-top: 2px; }
+
+  /* ─── Offre ─── */
+  .offer { padding-block: 0 clamp(80px, 12vh, 140px); display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(12px, 1.6vw, 24px); }
+  .offer-img { border-radius: 22px; overflow: hidden; min-height: 420px; background: var(--rose); }
+  .offer-img img { width: 100%; height: 100%; object-fit: cover; }
+  .offer-card { border-radius: 22px; background: var(--wine); color: #fff; padding: clamp(28px, 4vw, 56px); display: flex; flex-direction: column; gap: 22px; }
+  .offer-card .mono { color: var(--rose); }
+  .price { display: flex; align-items: baseline; gap: 12px; }
+  .price strong { font-size: clamp(64px, 7vw, 110px); font-weight: 500; letter-spacing: -0.05em; line-height: .9; }
+  .price span { color: var(--rose); font-size: 15px; }
+  .included { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .included li { display: flex; gap: 12px; align-items: baseline; font-size: 16px; }
+  .included li::before { content: ''; flex: none; width: 6px; height: 6px; border-radius: 50%; background: var(--rose); transform: translateY(-2px); }
+  .offer-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .offer-meta span { border: 1px solid rgba(240,211,216,.35); border-radius: 999px; padding: 6px 12px; font-size: 12px; color: var(--rose); }
+  .contact-row { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding-top: 22px; border-top: 1px solid rgba(240,211,216,.25); }
+  .contact-row .btn-rose { background: var(--rose); }
+  .email { font-size: 17px; user-select: all; }
+  .copy { background: none; border: 1px solid rgba(240,211,216,.4); color: var(--rose); border-radius: 999px; padding: 6px 12px; font: 500 12px/1 var(--display); cursor: pointer; }
+
+  /* ─── Pied de page ─── */
+  .foot { padding-block: 40px 48px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; }
+  .foot-name { font-family: var(--brand); font-weight: 600; color: var(--wine); font-size: clamp(64px, 12vw, 180px); line-height: .85; letter-spacing: -0.02em; position: relative; }
+  .foot-name small { font-family: var(--display); font-weight: 500; font-size: .12em; position: absolute; right: -1.6em; bottom: .1em; letter-spacing: 0; }
+  .foot-meta { display: grid; gap: 10px; justify-items: end; color: var(--muted); font-size: 14px; }
+  .foot-meta nav { display: flex; gap: 18px; }
+  .foot-meta a { text-decoration: none; color: var(--ink); }
+
+  /* ─── Écrans étroits ─── */
+  @media (max-width: 960px) {
+    .links { display: none; }
+    .nav { grid-template-columns: 1fr auto; }
+    .hero { grid-template-columns: 1fr; min-height: 0; text-align: left; }
+    .hero-copy { padding-bottom: 0; }
+    .portrait { max-width: 420px; justify-self: center; }
+    .stats { justify-self: stretch; grid-template-columns: repeat(3, 1fr); text-align: left; gap: 12px; padding-bottom: 0; margin-top: -40px; position: relative; }
+    .stat span { margin-left: 0; }
+    .story-pin { grid-template-columns: 1fr; grid-template-rows: 1.05fr 1fr; padding-block: 76px 16px; }
+    .panel-top { left: 20px; right: 20px; top: 18px; }
+    .progress { left: 20px; right: 20px; bottom: 18px; }
+    .step { left: 20px; right: 20px; }
+    .step p { font-size: 15px; margin-top: 12px; }
+    .step h2 { font-size: clamp(28px, 7.4vw, 40px); margin-top: 8px; }
+    .schedule, .offer { grid-template-columns: 1fr; }
+    .offer-img { min-height: 280px; }
+    .foot-meta { justify-items: start; }
+  }
+  @media (max-width: 520px) {
+    .seats { display: none; }
+    .actions .btn-ghost { display: none; }
+    .timeline li { grid-template-columns: 1fr; gap: 4px; }
+    .scan span { font-size: 8.5px; padding: 3px 6px; }
+    .chip { font-size: 11.5px; padding: 5px 11px 5px 8px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .scan { opacity: 1; transform: none; }
+    .scanline { display: none; }
+    .w { color: var(--ink); }
+    .w.key { color: var(--wine); }
+  }
+</style>
+
+<header class="nav wrap" id="nav">
+  <a class="brand" href="#top" aria-label="skinmi, retour en haut">
+    <span class="wordmark">skinmi<small>스킨미</small></span>
+    <span class="seats"><i><b></b><b></b><b></b></i>10 places par session</span>
+  </a>
+  <nav class="links" aria-label="Sections">
+    <a href="#atelier">L’atelier</a>
+    <a href="#methode">La méthode</a>
+    <a href="#deroule">Déroulé</a>
+    <a href="#tarif">Tarif</a>
+  </nav>
+  <div class="actions">
+    <a class="btn btn-ghost" href="#contact">Contact</a>
+    <a class="btn btn-wine" href="#tarif">Réserver</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap" aria-label="Présentation">
+    <div class="hero-copy">
+      <p class="hero-kicker mono">Atelier K-Beauty</p>
+      <h1>Votre peau, <em>révélée.</em></h1>
+      <p>Un diagnostic de peau, un soin du visage et votre routine K-Beauty sur-mesure. Une demi-journée, autour d’un brunch.</p>
+      <a class="btn btn-rose" href="#tarif">Réserver ma place</a>
+    </div>
+
+    <figure class="portrait" style="margin:0">
+      <img src="images/hero.jpg" alt="Portrait d’une femme à la peau lumineuse, analysée par le diagnostic skinmi">
+      <div class="scanline" aria-hidden="true"></div>
+      <div class="scan" style="--x:40%;--y:17%;--s:17%;--d:1.4s" aria-hidden="true"><span>Éclat <b>74 %</b></span></div>
+      <div class="scan" style="--x:57%;--y:32%;--s:15%;--d:1.9s" aria-hidden="true"><span>Hydratation <b>62 %</b></span></div>
+      <div class="scan left" style="--x:27%;--y:45%;--s:16%;--d:2.4s" aria-hidden="true"><span>Pores <b>fins</b></span></div>
+      <div class="scan" style="--x:47%;--y:56%;--s:12%;--d:2.9s" aria-hidden="true"><span>Sensibilité <b>légère</b></span></div>
+    </figure>
+
+    <div class="stats">
+      <div class="stat"><strong data-count="10">10</strong><span>participantes par session</span></div>
+      <div class="stat"><strong data-count="30">30<sub>min</sub></strong><span>de soin du visage individuel</span></div>
+      <div class="stat"><strong data-count="6">6<sub>h</sub></strong><span>d’atelier, de 13 h à 19 h</span></div>
+    </div>
+  </section>
+
+  <section class="story wrap" id="atelier" style="--steps:4" aria-label="L’atelier en quatre temps">
+    <div class="story-pin">
+      <div class="frame">
+        <figure class="shot on" style="margin:0">
+          <img src="images/diagnostic.jpg" alt="Diagnostic de peau pendant l’atelier">
+          <span class="dot" style="--x:58%;--y:30%;--d:.5s"><span>TEXTURE</span></span>
+          <span class="dot" style="--x:30%;--y:46%;--d:.7s"><span>HYDRATATION</span></span>
+          <span class="dot" style="--x:52%;--y:64%;--d:.9s"><span>SENSIBILITÉ</span></span>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img src="images/soin.jpg" alt="Soin du visage avec une mousse nettoyante">
+          <span class="dot" style="--x:48%;--y:26%;--d:.5s"><span>ILLUMINER</span></span>
+          <span class="dot" style="--x:34%;--y:52%;--d:.7s"><span>HYDRATER</span></span>
+          <span class="dot" style="--x:56%;--y:72%;--d:.9s"><span>APAISER</span></span>
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img src="images/brunch.jpg" alt="Brunch partagé entre participantes">
+        </figure>
+        <figure class="shot" style="margin:0">
+          <img src="images/produits.jpg" alt="Sélection de soins K-Beauty">
+        </figure>
+        <span class="frame-tag" id="frameTag">13 h 45 · Diagnostic</span>
+      </div>
+
+      <div class="panel">
+        <div class="panel-top mono"><span>L’atelier skinmi</span><span class="panel-count" id="stepCount">01 / 04</span></div>
+        <article class="step on">
+          <p class="mono">Décoder</p>
+          <h2>Le diagnostic de peau</h2>
+          <p>On observe votre peau de près : hydratation, texture, sensibilité, éclat. Vous comprenez enfin ce dont elle a besoin.</p>
+        </article>
+        <article class="step">
+          <p class="mono">Sublimer</p>
+          <h2>Le soin du visage</h2>
+          <p>Trente minutes rien que pour vous, avec les gestes et les textures choisis pour votre peau.</p>
+        </article>
+        <article class="step">
+          <p class="mono">Partager</p>
+          <h2>Le brunch et la pause thé</h2>
+          <p>Dix participantes, une grande table, des échanges sans jargon. On repart avec des réponses et de bons moments.</p>
+        </article>
+        <article class="step">
+          <p class="mono">Révéler</p>
+          <h2>Votre routine sur-mesure</h2>
+          <p>Une routine K-Beauty écrite pour votre peau, les produits adaptés à votre profil, et des échantillons pour commencer dès le soir.</p>
+        </article>
+        <div class="progress" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal wrap" id="methode" aria-label="La méthode skinmi">
+    <div class="reveal-pin">
+      <span class="chip" style="--x:14%;--y:22%;--c:#C98492" data-speed="-0.6">Décoder</span>
+      <span class="chip" style="--x:70%;--y:17%;--c:#7A2839" data-speed="-1">Hydratée</span>
+      <span class="chip" style="--x:6%;--y:52%;--c:#E3A9B4" data-speed="0.5">Apaisée</span>
+      <span class="chip" style="--x:78%;--y:58%;--c:#5A1E29" data-speed="0.8">Sublimer</span>
+      <span class="chip" style="--x:30%;--y:80%;--c:#C98492" data-speed="1.1">Lumineuse</span>
+      <span class="chip" style="--x:62%;--y:84%;--c:#7A2839" data-speed="0.4">Révéler</span>
+      <p class="reveal-text" id="revealText" data-key="pour une peau saine, lumineuse, révélée.">skinmi vous aide à comprendre votre peau et à en prendre soin comme jamais. Un diagnostic, un soin, une routine pensée pour vous, pour une peau saine, lumineuse, révélée.</p>
+    </div>
+  </section>
+
+  <section class="schedule wrap" id="deroule" aria-label="Déroulé de l’atelier">
+    <div class="schedule-intro">
+      <p class="mono" style="color:var(--wine)">Une session type</p>
+      <h2 style="margin-top:14px">Six heures, à votre rythme</h2>
+      <p>Un samedi par mois, de 13 h à 19 h. Deux postes de soin tournent en parallèle pour que chacune ait ses trente minutes.</p>
+    </div>
+    <ol class="timeline">
+      <li><time>13:00 → 13:45</time><div><strong>Accueil et brunch</strong><span>On fait connaissance autour de la table.</span></div></li>
+      <li><time>13:45 → 14:15</time><div><strong>Diagnostic de peau</strong><span>Comprendre votre type de peau et ses besoins.</span></div></li>
+      <li><time>14:15 → 17:15</time><div><strong>Soins individuels</strong><span>Trente minutes chacune, sur deux postes.</span></div></li>
+      <li><time>17:15 → 18:00</time><div><strong>Pause thé</strong><span>Échanges libres, questions, conseils.</span></div></li>
+      <li><time>18:00 → 18:30</time><div><strong>Votre sélection produits</strong><span>Les soins K-Beauty adaptés à chaque profil.</span></div></li>
+      <li><time>18:30 → 19:00</time><div><strong>Clôture</strong><span>Cadeaux et échantillons à emporter.</span></div></li>
+    </ol>
+  </section>
+
+  <section class="offer wrap" id="tarif" aria-label="Tarif et réservation">
+    <div class="offer-img"><img src="images/rituel.jpg" alt="Soin du visage K-Beauty pendant l’atelier"></div>
+    <div class="offer-card" id="contact">
+      <p class="mono">L’atelier skinmi</p>
+      <div class="price"><strong>79 €</strong><span>par personne,<br>tout compris</span></div>
+      <ul class="included">
+        <li>Diagnostic de peau</li>
+        <li>Soin du visage individuel de 30 minutes</li>
+        <li>Votre routine K-Beauty personnalisée</li>
+        <li>Brunch et pause thé</li>
+        <li>Sélection de produits adaptés à votre peau</li>
+        <li>Cadeaux et échantillons à emporter</li>
+      </ul>
+      <div class="offer-meta"><span>10 places</span><span>Une session par mois</span><span>13 h → 19 h</span></div>
+      <div class="contact-row">
+        <a class="btn btn-rose" href="mailto:contact@skinmi.fr?subject=R%C3%A9servation%20atelier%20skinmi">Réserver ma place</a>
+        <span class="email" id="email">contact@skinmi.fr</span>
+        <button class="copy" type="button" id="copyBtn">Copier</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <div class="foot-name">skinmi<small>스킨미</small></div>
+  <div class="foot-meta">
+    <nav aria-label="Réseaux sociaux">
+      <a href="https://www.instagram.com/skinmi" target="_blank" rel="noopener">Instagram ↗</a>
+      <a href="https://www.tiktok.com/@skinmi" target="_blank" rel="noopener">TikTok ↗</a>
+    </nav>
+    <span>Votre peau, révélée. © 2026 skinmi</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+  // chiffres du hero qui montent
+  if (!reduced) {
+    $$('[data-count]').forEach((el, i) => {
+      const target = +el.dataset.count;
+      const sub = el.querySelector('sub');
+      const txt = el.firstChild;
+      const t0 = performance.now() + 900 + i * 180, dur = 1400;
+      const tick = (now) => {
+        const k = clamp((now - t0) / dur, 0, 1);
+        txt.nodeValue = String(Math.round(target * (1 - Math.pow(1 - k, 3))));
+        if (k < 1) requestAnimationFrame(tick);
+      };
+      txt.nodeValue = '0';
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // texte qui se révèle : un span par mot, la chute en bordeaux
+  const rt = $('#revealText');
+  const key = rt.dataset.key;
+  const full = rt.textContent;
+  const cut = full.lastIndexOf(key);
+  const wrapWords = (s, cls) => s.trim().split(/\s+/).map((w) => `<span class="w${cls}">${w}</span>`).join(' ');
+  rt.innerHTML = wrapWords(full.slice(0, cut), '') + ' ' + wrapWords(key, ' key');
+  const words = $$('.w', rt);
+  const chips = $$('.chip');
+
+  const nav = $('#nav');
+  const story = $('#atelier');
+  const shots = $$('.shot', story);
+  const steps = $$('.step', story);
+  const bars = $$('.progress b', story);
+  const count = $('#stepCount');
+  const tag = $('#frameTag');
+  const TAGS = ['13 h 45 · Diagnostic', '14 h 15 · Soin du visage', '13 h 00 · Brunch', '18 h 00 · Votre routine'];
+  const reveal = $('#methode');
+  let active = -1;
+
+  function progress(el) {
+    const r = el.getBoundingClientRect();
+    return clamp(-r.top / (r.height - innerHeight), 0, 1);
+  }
+
+  function update() {
+    nav.classList.toggle('scrolled', scrollY > 10);
+
+    const p = progress(story);
+    const n = steps.length;
+    const idx = Math.min(n - 1, Math.floor(p * n));
+    bars.forEach((b, i) => { b.style.transform = `scaleX(${clamp(p * n - i, 0, 1)})`; });
+    if (idx !== active) {
+      active = idx;
+      shots.forEach((s, i) => s.classList.toggle('on', i <= idx));
+      steps.forEach((s, i) => { s.classList.toggle('on', i === idx); s.classList.toggle('past', i < idx); });
+      count.textContent = `0${idx + 1} / 0${n}`;
+      tag.textContent = TAGS[idx];
+    }
+
+    if (!reduced) {
+      const q = progress(reveal);
+      const lit = Math.round(clamp((q - 0.05) / 0.8, 0, 1) * words.length);
+      words.forEach((w, i) => w.classList.toggle('lit', i < lit));
+      chips.forEach((c) => {
+        const s = +c.dataset.speed;
+        c.style.transform = `translateY(${((0.5 - q) * s * 160).toFixed(1)}px)`;
+        c.style.opacity = clamp(q * 4, 0, 1).toFixed(2);
+      });
+    }
+  }
+
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { update(); ticking = false; });
+  }, { passive: true });
+  addEventListener('resize', update);
+  update();
+
+  // copier l'adresse e-mail
+  $('#copyBtn').addEventListener('click', (e) => {
+    const btn = e.currentTarget;
+    const done = () => { btn.textContent = 'Copiée'; setTimeout(() => (btn.textContent = 'Copier'), 1800); };
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents($('#email'));
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Sélectionnée';
+    };
+    try { navigator.clipboard.writeText('contact@skinmi.fr').then(done, fallback); } catch { fallback(); }
+  });
+})();
+</script>
