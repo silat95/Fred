@@ -22,7 +22,7 @@ window.SITE_CONTENT = {
   brand: {
     name: 'skinmi',
     title: 'skinmi — Atelier K-Beauty : diagnostic, soin & brunch',
-    description: 'skinmi, l’atelier K-Beauty intimiste : diagnostic de peau par une médecin esthétique, soin du visage, routine personnalisée et brunch partagé. 10 places, 79 €.',
+    description: 'skinmi, l’atelier K-Beauty intimiste : diagnostic de peau, soin du visage, routine personnalisée et brunch partagé. 10 places, 79 €.',
     kicker: 'SKINMI 스킨미 — ATELIER K-BEAUTY',
     copyright: '© 2026 — SKINMI, FRANCE',
     signature: 'VOTRE PEAU, RÉVÉLÉE. — 스킨미',
@@ -57,7 +57,7 @@ window.SITE_CONTENT = {
   positioning: 'Atelier K-Beauty · 10 places · 79 €',
 
   manifesto: {
-    text: 'Pas un soin de plus, vite fait, en cabine. Une médecin esthétique lit vraiment votre peau, et vous repartez avec [[votre routine]] — après un brunch partagé entre participantes.'
+    text: 'Pas un soin de plus, vite fait, en cabine. Un vrai diagnostic de peau, et vous repartez avec [[votre routine]] — après un brunch partagé entre participantes.'
   },
 
   proof: {
@@ -68,7 +68,7 @@ window.SITE_CONTENT = {
     meta: 'UNE SESSION — 13 H → 19 H',
     projects: [
       { img: 'images/proj-01.jpg', title: 'Le brunch d’accueil', meta: 'ACCUEIL — 13 H 00' },
-      { img: 'images/proj-02.jpg', title: 'Le diagnostic de peau', meta: 'MÉDECIN ESTHÉTIQUE — 13 H 45' },
+      { img: 'images/proj-02.jpg', title: 'Le diagnostic de peau', meta: 'ANALYSE — 13 H 45' },
       { img: 'images/proj-03.jpg', title: 'La double purification', meta: 'RITUEL K-BEAUTY — ÉTAPE 1' },
       { img: 'images/proj-04.jpg', title: 'Le soin du visage', meta: 'INDIVIDUEL — 30 MIN' },
       { img: 'images/proj-05.jpg', title: 'Les sérums ciblés', meta: 'ACTIFS — SELON VOTRE PEAU' },
@@ -82,7 +82,7 @@ window.SITE_CONTENT = {
   motto: {
     kicker: 'CE QUI GUIDE CHAQUE ATELIER',
     words: [
-      { word: 'Lire', hint: 'Un vrai diagnostic, posé par une médecin esthétique.' },
+      { word: 'Lire', hint: 'Un vrai diagnostic de peau, avant tout conseil.' },
       { word: 'Choyer', hint: 'Trente minutes de soin, rien que pour vous.' },
       { word: 'Révéler', hint: 'Une routine qui transforme, pas un soin d’un jour.' }
     ]
@@ -95,7 +95,7 @@ window.SITE_CONTENT = {
     cta: 'Réserver ma place →',
     image: 'images/process.jpg',
     items: [
-      { name: 'Diagnostiquer', meta: 'TEMPS — 01', desc: 'Accueil et brunch, puis la médecin esthétique analyse votre peau : type, besoins, sensibilités.' },
+      { name: 'Diagnostiquer', meta: 'TEMPS — 01', desc: 'Accueil et brunch, puis un diagnostic de votre peau : type, besoins, sensibilités.' },
       { name: 'Soigner', meta: 'TEMPS — 02', desc: 'Un soin du visage individuel de 30 minutes, pendant que le groupe partage un thé.' },
       { name: 'Révéler', meta: 'TEMPS — 03', desc: 'Votre routine personnalisée, les produits adaptés à votre profil, et des échantillons pour commencer dès le soir.' }
     ]
