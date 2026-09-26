@@ -80,11 +80,11 @@ window.SITE_CONTENT = {
   },
 
   motto: {
-    kicker: 'CE QUI GUIDE CHAQUE ATELIER',
+    kicker: 'LA MÉTHODE SKINMI EN 3 MOTS',
     words: [
-      { word: 'Lire', hint: 'Un vrai diagnostic de peau, avant tout conseil.' },
-      { word: 'Choyer', hint: 'Trente minutes de soin, rien que pour vous.' },
-      { word: 'Révéler', hint: 'Une routine qui transforme, pas un soin d’un jour.' }
+      { word: 'Décoder', hint: 'Votre peau a son langage. On le traduit.' },
+      { word: 'Sublimer', hint: 'Trente minutes de soin. Rien que pour vous.' },
+      { word: 'Révéler', hint: 'Pas l’effet d’un jour. Une peau qui change.' }
     ]
   },
 
