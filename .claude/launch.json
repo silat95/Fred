@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "skinmi",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [".claude/serve-skinmi.mjs"],
+      "port": 4385
+    }
+  ]
+}
